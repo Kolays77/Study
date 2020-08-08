@@ -1,0 +1,8 @@
+aaaaa/*bb
+b*/cc
+cccc/*ddd/*e
+e*/fff*/gggg
+assa 
+assa /*123*/456
+svv*ca//*d
+*/d

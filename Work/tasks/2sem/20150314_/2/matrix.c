@@ -1,0 +1,89 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "matrix.h"
+#define MAXN 8
+
+int read_matrix(const char* fname, double* a, int n, int m)
+{
+    FILE* fp;
+    int i;
+    if (!(fp = fopen(fname, "r")))
+    {
+        return -1;
+    }
+    for (i = 0; i < n * m; i++)
+    {
+        if (fscanf(fp, "%lf", a + i) != 1)
+        {
+            fclose(fp);
+            return -2;
+        }
+    }
+    fclose(fp);
+    return 0;
+}
+
+double f1(int i, int j)
+{
+    return fabs(i - j);
+}
+
+double f2(int i, int j)
+{
+    return 1.0 / (i + j + 1);
+}
+
+double f3(int i, int j)
+{
+    return (7 * i + j * j + 8) % 179;
+}
+
+void init_matrix(double* a, int n, int m)
+{
+    int i, j;
+    double* ai = a;
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < m; j++)
+        {
+            ai[j] = f3(i, j);
+        }
+        ai += m;
+    }
+}
+
+void fill0_matrix(double* a, int n, int m)
+{
+    int i;
+    for (i = 0; i < n * m; i++)
+    {
+        a[i] = 0;
+    }
+}
+
+
+void print_matrix(double* a, int n, int m)
+{
+    int i, j;
+    int n_max = (n > MAXN ? MAXN : n);
+    int m_max = (m > MAXN ? MAXN : m);
+    for (i = 0; i < n_max; i++)
+    {
+        for (j = 0; j < m_max; j++)
+        {
+            printf(" %8.2f", a[i * m + j]);
+        }
+        if (m > MAXN)
+        {
+            printf(" ...");
+        }
+        printf("\n");
+    }
+    if (n > MAXN)
+    {
+        printf("     ...\n");
+    }
+    printf("\n");
+}
+

@@ -1,0 +1,1 @@
+void transposition(double *, int);

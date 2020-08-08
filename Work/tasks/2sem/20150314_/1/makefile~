@@ -1,0 +1,8 @@
+prog2.exe: main2.o string_arrays.o sort2.o
+	gcc -g main2.o string_arrays.o sort2.o -o prog2.exe
+main2.o: main2.c string_arrays.h sort2.h
+	gcc -c -g main2.c
+string_arrays.o: string_arrays.c string_arrays.h
+	gcc -c -g string_arrays.c
+sort2.o: sort2.c sort2.h
+	gcc -g -c sort2.c

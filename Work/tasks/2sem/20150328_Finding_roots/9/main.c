@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <time.h>
+#include "head.h"
+
+#define EPS 0.0000000000000001
+
+int main(int argc, char *argv[])
+{
+	double eps, left_board, right_board, counter_of_time;
+	double answer;
+	if (argc != 2)
+	{
+		printf("Usage: %s [eps]\n", argv[0]);
+		return 1;
+	}
+	if ((eps = atof(argv[1])) <= 0)
+	{
+		printf("Cannot read [eps]!\n");
+		return 1;
+	}
+	printf("Input [a]: ");
+	if (scanf("%lf", &left_board) != 1)
+	{
+		printf("Cannot read [a]!\n");
+		return 1;
+	}
+	printf("Input [b]: ");
+	if (scanf("%lf", &right_board) != 1)
+	{
+		printf("Cannot read [b]!\n");
+		return 1;
+	}
+	
+	double (*f)(double);
+	f = &function;
+	
+	if (left_board > right_board)
+	{
+		double tmp = left_board;
+		left_board = right_board;
+		right_board = tmp;
+	}
+	
+	counter_of_time = clock();
+	
+	int result = find_max(left_board, right_board, f, eps, &answer);
+	if (result < 0)
+	{
+		printf("Cannot solve!\n");
+		return -1;
+	}
+	else
+	{
+		printf("x = %.3f\n", answer);
+		printf("f(x) = %.5f\n", f(answer));
+		printf("Iterations = %d\n", result);
+		printf("Elapsed = %.3f\n", (clock() - counter_of_time) / CLOCKS_PER_SEC);
+		return 0;
+	}
+}

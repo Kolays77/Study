@@ -1,0 +1,1 @@
+double solve1(double* A, double* x0, int n, int m);

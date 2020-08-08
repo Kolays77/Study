@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "read.h"
+
+#define MAX_PRINTABLE_NUMBER 15
+#define MAX_LENGTH 10000
+
+int make_string(char *TROLOLObufferAZAZA)
+{
+	int id_;
+	for (id_ = 0; TROLOLObufferAZAZA[id_]; id_++)
+	{
+		if (TROLOLObufferAZAZA[id_] == '\n')
+		{
+			TROLOLObufferAZAZA[id_] = 0;
+			break;
+		}
+	}
+	return id_;
+}
+
+int solve(const char *input,
+		  const char *output, 
+		  const char *substr,
+		  const char *new_substr)
+{
+	FILE *fp1, *fp2;
+	int id_ = 0, 
+		was_changed = 0, 
+		len_TROLOLObufferAZAZA = 0,
+		len_substr = strlen(substr),
+		len_new_substr = strlen(new_substr),
+		difference = len_new_substr - len_substr,
+		counter = 0;
+	char TROLOLObufferAZAZA[MAX_LENGTH],
+	     *pointer;
+	
+	if (!(fp1 = fopen(input, "r")))
+	{
+		return -11;
+	}
+	if (!(fp2 = fopen(output, "w"))) 
+	{
+		return -12;
+	}
+	while (fgets(TROLOLObufferAZAZA, MAX_LENGTH, fp1))
+	{
+		pointer = strstr(TROLOLObufferAZAZA, substr);
+		while (pointer)
+		{
+			len_TROLOLObufferAZAZA = strlen(TROLOLObufferAZAZA);
+			was_changed = 1;
+			for (id_ = len_TROLOLObufferAZAZA + difference - 1; id_ >= pointer + len_new_substr - TROLOLObufferAZAZA; id_--)
+			{
+				TROLOLObufferAZAZA[id_] = TROLOLObufferAZAZA[id_ - difference];
+			}
+			strncpy(pointer, new_substr, len_new_substr);
+		}
+		
+		if (was_changed)
+		{
+			counter++;
+			was_changed = 0;
+	 	}
+		fprintf(fp2, "%s\n", TROLOLObufferAZAZA);
+	}
+	
+	if (!feof(fp1))
+	{
+		fclose(fp1);
+		fclose(fp2);
+		return -2;
+	}
+	
+	fclose(fp1);
+	fclose(fp2);
+	return counter;	
+} 

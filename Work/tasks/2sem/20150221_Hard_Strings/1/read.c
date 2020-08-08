@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "read.h"
+
+#define MAX_PRINTABLE_NUMBER 15
+#define MAX_LENGTH 10000
+
+int solve(const char *input,
+	  const char *output,
+	  const char *substr,
+	  const char *new_substr)
+{
+  FILE *fp1, *fp2;
+  int id_ = 0,
+      was_changed = 0,
+      len_buffer = 0,
+      len_substr = strlen(substr),
+      len_new_substr = strlen(new_substr),
+      difference = len_new_substr - len_substr,
+      counter = 0;
+  char buffer[MAX_LENGTH],
+      *pointer;
+
+  if (!(fp1 = fopen(input, "r")))
+    {
+      return -11;
+    }
+  if (!(fp2 = fopen(output, "w")))
+    {
+      return -12;
+    }
+  while (fgets(buffer, MAX_LENGTH, fp1))
+    {
+      for (id_ = 0; buffer[id_]; id_++)
+        {
+          if (buffer[id_] == '\n')
+            {
+              buffer[id_] = 0;
+              break;
+            }
+        }
+      printf("%s\n", buffer);
+
+      if (difference >= 0)
+        {
+          while (pointer = strstr(buffer, substr))
+            {
+              len_buffer = strlen(buffer);
+              was_changed = 1;
+              for (id_ = len_buffer + difference - 1; id_ >= pointer + len_new_substr - buffer; id_--)
+                {
+                  buffer[id_] = buffer[id_ - difference];
+                }
+              strncpy(pointer, new_substr, len_new_substr);
+            }
+        }
+      else
+        {
+          while (pointer = strstr(buffer, substr))
+            {
+              len_buffer = strlen(buffer);
+              was_changed = 1;
+              for (id_ = pointer + len_new_substr - buffer; id_ < len_buffer + difference; id_++)
+                {
+                  buffer[id_] = buffer[id_ - difference];
+                }
+              strncpy(pointer, new_substr, len_new_substr);
+              buffer[id_] = 0;
+            }
+        }
+
+      if (was_changed)
+        {
+          counter++;
+          was_changed = 0;
+        }
+      fprintf(fp2, "%s\n", buffer);
+    }
+
+  if (!feof(fp1))
+    {
+      fclose(fp1);
+      fclose(fp2);
+      return -2;
+    }
+
+  fclose(fp1);
+  fclose(fp2);
+  return counter;
+} 

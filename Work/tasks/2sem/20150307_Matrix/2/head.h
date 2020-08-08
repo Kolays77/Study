@@ -1,0 +1,1 @@
+double trace(double *, int);

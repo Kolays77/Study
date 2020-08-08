@@ -1,0 +1,19 @@
+CFLAGS = -g -Wall -W -Wextra -O3 
+a.out: node.o list.o read.o generate.o main.o solve.o
+	g++ $(CFLAGS)  node.o list.o read.o generate.o main.o solve.o -o a.out
+node.o: node.cpp node.h
+	g++ $(CFLAGS) -c node.cpp
+list.o: list.cpp list.h node.h
+	g++ $(CFLAGS) -c list.cpp
+generate.o: generate.cpp generate.h
+	g++ $(CFLAGS) -c generate.cpp
+read.o: read.cpp read.h list.h
+	g++ $(CFLAGS) -c read.cpp
+main.o: main.cpp solve.h read.h list.h
+	g++ $(CFLAGS) -c main.cpp
+	
+solve.o: solve.cpp solve.h
+	g++ $(CFLAGS) -c solve.cpp
+	
+clean:
+	rm -f a.out *.o leak*

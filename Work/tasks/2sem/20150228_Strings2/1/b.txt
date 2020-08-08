@@ -1,0 +1,7 @@
+	char buffer[MAX_LENGTH],
+		 buffer2[MAX_LENGTH];
+	while (fgets(buffer, MAX_LENGTH, fp1))
+		strcpy(buffer2, buffer);
+		make_string(buffer);
+		if (strstr(buffer, str))
+			fprintf(fp2, "%s", buffer2);

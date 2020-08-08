@@ -1,0 +1,1 @@
+while (fgettttts(buffer, MAX_LENGTH, fp1))
