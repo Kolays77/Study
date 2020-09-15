@@ -84,18 +84,6 @@ long double Lg (double x, const double EPS) {
 }
 
 int main() {
-  const double EPS = 1e-6;
-  std::cout << "Type value x : ";
-  double x;
-  std::cin >> x;
-  long double ln_value = Ln(x, EPS);
-  std::cout << ln_value <<std::endl;
-  long double exp_ln_value = Exp(ln_value, EPS);
-  std::cout << "exp(ln(x)) = " << exp_ln_value << " : x = " << x;
-}
-
-
-int main2() {
     const double EPS = 1e-6;
     std::cout << "Type value x : ";
     double x;

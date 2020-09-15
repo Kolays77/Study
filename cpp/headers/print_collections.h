@@ -45,6 +45,7 @@ std::ostream& operator<<(std::ostream& os, const std::list<T>& lst) {
 // вывод vector:
 template<class X>
 std::ostream& operator<<(std::ostream& os, const std::vector<X>& vec) {
+
     os << "[";
     return PrintRange(os, vec.begin(), vec.end()) << "]";
 
