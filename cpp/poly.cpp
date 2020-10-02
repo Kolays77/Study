@@ -3,7 +3,6 @@
 #include "headers/print_collections.h"
 #include "/mnt/c/Users/nimak/Git/matplotlib-cpp/matplotlibcpp.h"
 
-
 const double pi = 3.14159265359;
 const double EPS = 1e-6;
 // repr: [1,2,3,4] -> 1 + 2*x + 3*x^2 + 4*x^3
@@ -102,7 +101,6 @@ public:
         }
         return *this;
     }
-
 };
 
 template <typename T>
@@ -160,52 +158,25 @@ std::ostream& operator<<(std::ostream& out, const Poly<T>& p) {
 
 
 
-template <typename T>
-Poly<T> CreateNewTonePoly(const std::vector<T>& xs, const std::vector<T>& ys) {
-    Poly<T> res(1,ys[0]);
-    Poly<T> F (1,0); 
-    double temp = 1, n = xs.size();
-    for (size_t i = 1; i < n; ++i) {
-        F.Clear();
-        F[0] = 0;
-        for (size_t j = 0; j <= i; ++j) {
-            temp = 1;
-            for (size_t k = 0; k <= i; ++k) {
-                if (k != j) temp *= (xs[j] - xs[k]);
+double Newton2(double x, std::vector<double>& xs, std::vector<double>& ys) {
+    double res = ys[0], F = 0, den = 1;
+    int n = xs.size();
+    int i, j, k;
+    for (i = 1; i < n; i++) {
+        F = 0;
+        for (j = 0; j <= i; j++) {
+            den = 1;
+            for (k = 0; k <= i; k++) {
+                if (k != j) den *= (xs[j] - xs[k]);
             }
-            F[0] += ys[j] / temp;
+            F += ys[j] / den;
         }
-        for (size_t k = 0; k < i; ++k) {
-            F *= Poly<T>(std::vector<T>({-xs[k], 1}));
-        }
+        for (k = 0; k < i; k++) 
+            F *= (x - xs[k]);
         res += F;
     }
     return res;
 }
-
-
-double Newton2(double x, std::vector<double>& xs, std::vector<double>& ys)
-        {
-            double res = ys[0], F = 0, den = 1;
-            int n = xs.size();
-            int i, j, k;
-            for (i = 1; i < n; i++)
-            {
-                F = 0;
-                for (j = 0; j <= i; j++)
-                {
-                    den = 1;
-                    for (k = 0; k <= i; k++)
-                    {
-                        if (k != j) den *= (xs[j] - xs[k]);
-                    }
-                    F += ys[j] / den;
-                }
-                for (k = 0; k < i; k++) F *= (x - xs[k]);
-                res += F;
-            }
-            return res;
-        }
  
 
 
@@ -273,11 +244,10 @@ namespace plt = matplotlibcpp;
 
 
 int main() {
-    const double from = -10; 
-    const double to = 10;
+    const double from = -4; 
+    const double to = 4;
     const double dx = 0.1; 
     const size_t N = (to - from) / dx + 1;
-
     double temp = from;
     std::vector<double> xs(N);
 
@@ -286,22 +256,22 @@ int main() {
         temp += dx;
     } 
 
-    std::vector<double> sin(N);
-    std::vector<double> cos(N);
-    std::vector<double> tan(N);
-    std::vector<double> cotan(N);
-    
-    for (size_t i = 0; i < N; ++i) {   
-        sin[i] = std::sin(xs[i]);
-        cos[i] = std::cos(xs[i]);
-        tan[i] = std::tan(xs[i]);
-    } 
+    std::vector<double> x_poly = {-2 ,-1, 0, 1};
+    std::vector<double> y_poly;
+    for(auto& it: x_poly) {
+        y_poly.push_back(std::exp(it));
+    }
+    Poly<double> poly= CreateLagrangePoly(x_poly, y_poly);
+    std::cout << poly << std::endl;
+    std::vector<double> Y(N); 
+    std::vector<double> exp_y(N);
+    for (size_t i = 0; i < N; ++i) {
+        Y[i] = poly.At(xs[i]);
+        exp_y[i] = std::exp(xs[i]);
+    }
 
-    
-    plt::named_plot("sin(x)", xs, sin);
-    plt::named_plot("cos(x)", xs, cos);
-
-
+    plt::named_plot("std::exp(x)", xs, exp_y);
+    plt::named_plot("my exp(x)", xs, Y);
     plt::xlim(from, to); // Set x-axis to interval [0,1000000]
     plt::title("Test");
     plt::legend();
