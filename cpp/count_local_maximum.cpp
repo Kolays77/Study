@@ -2,7 +2,6 @@
 #include <chrono>
 #include <random>
 
-
 //comparator: prime test
 bool isPrime(int value) {   
     for (size_t i = 2; i < value; i++) {
@@ -10,7 +9,7 @@ bool isPrime(int value) {
             return false;
     }
     return value > 1;
- }
+}
 
 
 size_t CountElements(int* array, size_t n, bool isFunc(int)) {
@@ -23,6 +22,7 @@ size_t CountElements(int* array, size_t n, bool isFunc(int)) {
     return count;
 }
 
+
 int* GenerateArray(size_t n) {
     int* arr = new int[n];
     std::mt19937 rng(std::chrono::steady_clock::now().time_since_epoch().count());
@@ -32,6 +32,7 @@ int* GenerateArray(size_t n) {
     }
     return arr;
 }
+
 
 template<typename T>
 int CountLocalMaximum(T* array, size_t n) {
@@ -53,7 +54,7 @@ int CountLocalMaximum(T* array, size_t n) {
     return count;
 }
 
-int main (){
+int main () {
     size_t  n = 4;
     int* array = GenerateArray(n); //dynamic array
     for (size_t i = 0; i < n; i++) {

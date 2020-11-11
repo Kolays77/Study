@@ -36,14 +36,14 @@ class HashTable:
 
     def get(self, key):
         startkey = self.hash(key)
-        data = None
+        #data = None
         stop = False
         found = False
         position = startkey
         while self.keys[position] != None and not found and not stop:
             if self.keys[position] == key:
                 found = True
-                data = self.data[position]
+                #data = self.data[position]
             else:
                 position = self.rehash(position)
                 if position == startkey:

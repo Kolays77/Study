@@ -1,23 +1,19 @@
-template<int N>
+#include <random>
+
 struct RandomInt {
-    int operator()() {
+    static int gen(int from, int to){
         static std::random_device rd;
         static std::mt19937 gen(rd());
-        static std::uniform_int_distribution<int> uid(0, N);
+        static std::uniform_int_distribution<int> uid(from, to);
         return uid(gen);
     }
 };
 
-template<typename T>
 struct RandomReal {
-    RandomReal(T f, T t) : from(f), to(t) {}
-    T operator()() {
+    static double gen(double from, double to) {
         std::random_device rd;
-        std::mt19937 mt(rd());
-        std::uniform_real_distribution<T> dist(from, to);
-        return dist(mt);
+        std::mt19937 gen(rd());
+        std::uniform_real_distribution<double> urd(from, to);
+        return urd(gen);
     }
-private:
-    T from;
-    T to;
 };

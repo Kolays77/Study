@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 
+
+
 int find_lower(const std::vector<int>& a, int x) { // max i : a[i] <= x
 	int l = -1; // a[l] <= x
 	int r = (int)a.size(); // a[r] > x
