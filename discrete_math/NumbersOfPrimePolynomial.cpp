@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+
 // it is uses formula 
 using namespace std;
 int NumberOfPimeDividers(int n){

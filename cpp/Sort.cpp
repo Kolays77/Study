@@ -1,14 +1,6 @@
 #include <iostream>
 #include <vector>
 
-#define PRINT
-
-// END - NOT inclusive
-template<typename T>
-void QuickSort(T begin, T end) {
-    2+2;
-}
-
 // END - NOT inclusive
 template<typename T>
 void InsertionSort(T begin, T end) {

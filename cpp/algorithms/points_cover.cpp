@@ -2,6 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #define DEBUG(x) std::cout << #x << " = " << (x) << std::endl;
+// I don't remember what it's for
 
 unsigned PointsCover(std::vector<double>& v) {
 	if (!v.size()) {

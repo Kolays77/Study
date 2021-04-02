@@ -1,6 +1,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <process.h>
+
 float *x, *y, *h, *l, *delta, *lambda, *c, *d, *b;
 int N;
 char filename[256];
