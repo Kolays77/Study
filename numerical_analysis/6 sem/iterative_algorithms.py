@@ -5,9 +5,9 @@ import copy
 def seidel_iteration_method(A, b, eps, is_debug=False):
     n = len(A)
     xs = np.zeros(n)
-    converge = False
+    is_converge = False
     count = 0
-    while not converge:
+    while not is_converge:
         xs_new = np.copy(xs)
         for i in range(n):
             s1 = sum(A[i][j] * xs_new[j] for j in range(i))
@@ -16,8 +16,7 @@ def seidel_iteration_method(A, b, eps, is_debug=False):
 
         #residual = np.sqrt(sum((xs_new - xs)**2))  # невязка
         residual = max(np.abs(xs-xs_new))  # невязка
-
-        converge = residual <= eps
+        is_converge = residual <= eps
         xs = xs_new
         if is_debug:
             print(f"Итерация{count} : x = {xs} невязка = {round(residual, 6)}")
@@ -40,7 +39,6 @@ def simple_iteration_method(A, b, eps, is_debug=False):
         xs_new = betas + np.dot(alphas, xs)
         #residual = np.sqrt(sum((xs_new - xs)**2))  # невязка
         residual = max(np.abs(xs-xs_new))
-
         #np.allclose(x, x_new, eps)
         if is_debug:
             print(f"Итерация {count} : x = {np.transpose(xs)[0]}; невязка = {round(float(residual), 6)}")

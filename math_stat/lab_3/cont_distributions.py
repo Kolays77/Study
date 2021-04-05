@@ -138,17 +138,10 @@ class Empirical(Base):
                  data,
                  type_="Unknown", *args):
         super().__init__()
-
-        if type_ == "Uniform":
-            if len(args) < 2:
-                raise Exception("Uniform distribution without segment [a,b]")
-            a = args[0]
-            b = args[1]
-            if a is None or b is None or isinstance(a, float) or isinstance(b, float):
-                raise Exception("Uniform distribution without segment [a,b]")
-
+        self.params = list(args)
         self.type = type_
         self.__size = len(data)
+        self.count_intervals = int(1 + np.log2(self.__size))
         self.__count_intervals = count_intervals = int(1 + np.log2(self.__size))
         self.__data = np.sort(data)
         self.__create_bins()
@@ -194,11 +187,11 @@ class Empirical(Base):
         if self.type == "Exponential":
             lower = 0
         if self.type == "Uniform":
-            lower = prm.segment[0]
-            upper = prm.segment[1]
+            lower = self.params[0]
+            upper = self.params[1]
 
         d = upper - lower
-        m = prm.count_intervals
+        m = self.count_intervals
         h = d / m
         self.__bins = np.zeros(m + 1)
         self.__bins[0] = lower
@@ -233,13 +226,13 @@ class Empirical(Base):
     def __count_dispersion(self, corr=True):
         self.dispersion = self.__count_centre_k_moment(2)
         if corr:
-            self.dispersion -= 1 / 12 * (self.__data[-1] - self.__data[0]) / prm.count_intervals
+            self.dispersion -= 1 /12*(self.__data[-1] - self.__data[0]) / self.count_intervals
 
     def __count_std(self):
         self.std = np.sqrt(self.dispersion)
 
     def __count_median(self):
-        h = (self.__bins[-1] - self.__bins[0]) / prm.count_intervals
+        h = (self.__bins[-1] - self.__bins[0]) / self.count_intervals
         s = self.__df["Frequency"][0]
         k = 0
         while s <= 1 / 2:
@@ -259,9 +252,9 @@ class Empirical(Base):
         right_freq, left_freq = 0, 0
         if idx_max > 0:
             left_freq = self.__df["Frequency"][idx_max - 1]
-        if idx_max + 1 < prm.count_intervals:
+        if idx_max + 1 < self.count_intervals:
             right_freq = self.__df["Frequency"][idx_max + 1]
-        h = (self.__bins[-1] - self.__bins[0]) / prm.count_intervals
+        h = (self.__bins[-1] - self.__bins[0]) / self.count_intervals
         left_mode = self.__df["Intervals"][idx_max].left
         self.mode = left_mode + h * ((max_freq - left_freq) / (2 * max_freq - left_freq - right_freq))
 
