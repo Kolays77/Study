@@ -6,7 +6,7 @@ import cont_distributions as cd
 """
 Лабораторная 3 по математической статистике
 To-do
-1) ну там пиздец много
+1) ну там пиздец много'\\
 
 """
 
@@ -19,11 +19,8 @@ if __name__ == "__main__":
         
     print(data1, end='\n\n')
     print(data2.shape)
-    
     emp1 = cd.Empirical(data1)   
     emp1.show()
     emp1.plot_edf()
-    
-    
     emp2 = cd.Empirical(data2)
     emp2.show()
