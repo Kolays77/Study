@@ -5,8 +5,7 @@ import matplotlib.pyplot as plt
 import math
 
 """
-Лабораторная работа №3 
-
+Лабораторная работа №4
 Решить уравнение f(x)=0, где f(x) = 4^(x)-5x-2 на [0, 5] 
 1. методом половинного деления :  bisection_method
 2. простой итерации :
@@ -36,11 +35,12 @@ def bisection_method(left, right, func, eps, is_log=False):
         if is_log:
             print(f"Итерация номер {count} невязка {round(right-left, 6)} f(x)={round(value_mid, 6)}")
     if is_log:
-        print('\n')
+      print(f"Итерация номер {count} невязка {round(right-left, 6)} f(x)={round(value_mid, 6)}")
+      print('\n')
     return mid
 
 
-def simple_iteration_method(x0_, phi, eps, is_log):
+def simple_iteration_method(x0_, phi, eps, is_log=True):
     x0 = x0_
     x1 = phi(x0)
     count = 0
@@ -58,8 +58,8 @@ def simple_iteration_method(x0_, phi, eps, is_log):
     return x1
 
 
-def newton_method(left, right, func, func_der, eps, is_log):
-    x0 = 1
+def newton_method(x, func, func_der, eps, is_log=True):
+    x0 = x
     count = 0
     print(f"Начальное приближение x = {x0}")
     while True:
@@ -75,7 +75,7 @@ def newton_method(left, right, func, func_der, eps, is_log):
     return x1
 
 
-def secant_method(x0_, x1_, func, eps, is_log):
+def secant_method(x0_, x1_, func, eps, is_log=True):
     x0 = x0_
     x1 = x1_
     count = 0
@@ -113,15 +113,18 @@ if __name__ == '__main__':
     func_der = lambda x: np.float_power(4, x)*np.log(4) - 5
     phi = lambda x: np.log(5*x+2)/np.log(4)
 
+    print(f"Метод половинного деления")
     x_bisection = bisection_method(left, right, func, eps, True)
-    x_simple = simple_iteration_method(left, right, phi, eps, True)
-    x_newtom = newton_method((right-left/2), , func, func_der, eps, True)
+    print(f"Метод простых итераций")
+    x_simple = simple_iteration_method(left, phi, eps, True)  
+    print(f"Метод Ньютона")
+    x_newtom = newton_method(1.1, func, func_der, 0.000000001, True)
+    print(f"Метод секущей")
     x_secant = secant_method(0.5, 1.8, func, eps, True)
     
-    print(f"Метож половинного деления x = {x_bisection}")
-    print(f"Метож простых итераций x = {x_simple}")
-    print(f"Метож Ньютона x = {x_newtom}")
-    print(f"Метож секущей x = {x_secant}")
+    print(f"Метод половинного деления x = {x_bisection}")
+    print(f"Метод простых итераций x = {x_simple}")
+    print(f"Метод Ньютона x = {x_newtom}")
+    print(f"Метод секущей x = {x_secant}")
     plot(left, right, func, eps)
     
-# %%

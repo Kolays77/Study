@@ -9,7 +9,7 @@ elif command == "freeze":
 	if troom < tcond:
 		print(troom)
 	else:
-		print(tcond
+		print(tcond)
 elif command == "heat":
     if troom > tcond:
         print(troom)

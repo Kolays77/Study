@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d941740-1c0e-40fe-ba6a-a06ad16fe88f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../duck/Duck.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../duck/Farm.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../duck/Game.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../duck/Lake.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../duck/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../numerical_analysis/6 sem/course_work.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../numerical_analysis/6 sem/course_work.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../numerical_analysis/6 sem/lab_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../numerical_analysis/6 sem/lab_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../numerical_analysis/6 sem/lab_4.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../numerical_analysis/6 sem/lab_4.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +30,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -51,6 +61,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="cv" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="lab_3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cv.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.cv" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -62,6 +99,12 @@
       <updated>1617653122522</updated>
       <workItem from="1617653124186" duration="2384000" />
       <workItem from="1617741023578" duration="21000" />
+      <workItem from="1618748210379" duration="634000" />
+      <workItem from="1618866555516" duration="1991000" />
+      <workItem from="1619334403708" duration="7000" />
+      <workItem from="1619878851939" duration="3000" />
+      <workItem from="1621449106219" duration="595000" />
+      <workItem from="1622362805150" duration="548000" />
     </task>
     <servers />
   </component>

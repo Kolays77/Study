@@ -11,7 +11,8 @@ import iterative_algorithms as it_alg
 if __name__ == '__main__':
     eps = 0.001
     A = np.array([[15, 3, -5, -5],
-                  [7, -15, -6, 1],
+                  [7, -15, -
+                   6, 1],
                   [-4, 7, -19, -6],
                   [3, 0, -5, 8]])
 
